@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import py.com.spa.app.entities.Categorias;
 import py.com.spa.app.entities.Compras;
 import py.com.spa.app.services.CategoriaService;
@@ -33,10 +34,16 @@ public class CompraRESTController {
 	}
 	
 	
-	@PostMapping("/agregar")
+	/*@PostMapping("/agregar")
 	public void agregarCompra(@RequestBody Compras venta) {
 		compraService.addCompras(venta);
+	}*/
+	@PostMapping("/agregar")
+	public ResponseEntity<?> agregarCompra(@RequestBody Compras compra) {
+		compraService.addCompras(compra);
+		return new ResponseEntity<Compras>(compra, HttpStatus.OK);
 	}
+	
 	
 	@GetMapping("/encontrar/{id}")
 	public Compras obtenerComprasId(@PathVariable(value="id") Integer id) {
@@ -49,9 +56,10 @@ public class CompraRESTController {
 		if(c!=null) {
 			c.setFecha(compra.getFecha());
 			c.setMontoTotal(compra.getMontoTotal());
-			c.setMontoTotal(compra.getMontoTotal());
+			c.setProveedorId(compra.getProveedorId());
+			compraService.updateCompras(c);
 			//-c.setEstado(compra.getEstado());
-			return new ResponseEntity<Void>(HttpStatus.OK);
+			return new ResponseEntity<Compras>(compra, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
