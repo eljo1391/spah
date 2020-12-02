@@ -12,6 +12,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
             .allowedOrigins("https://spafpuna.herokuapp.com/")
-            .allowedMethods("PUT", "DELETE", "GET", "POST")
+            .allowedMethods("PUT", "DELETE", "GET", "POST");
     }
 }
