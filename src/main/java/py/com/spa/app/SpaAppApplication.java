@@ -25,7 +25,6 @@ import py.com.spa.app.entities.Categorias;
 
 
 @SpringBootApplication
-@EntityScan(basePackageClasses=Categorias.class) 
 public class SpaAppApplication {
 
 	public static void main(String[] args) {
